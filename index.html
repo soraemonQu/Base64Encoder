@@ -7,37 +7,20 @@
 </head>
 <body>
   <div style="margin: 10pt; text-align: center;"><input type="file" id="upload"></div>
-  <div style="margin: 10pt; text-align: center;"><a id="download1" href="#" download="img.txt">テンプレートごとダウンロード（初回のみ）</a></div>
-  <div style="margin: 10pt; text-align: center;"><a id="download2" href="#" download="img.txt">貼り付け部分のみダウンロード（２回目～）</a></div>
+  <div style="margin: 10pt; text-align: center;"><a id="download" href="#" download="img.txt">ダウンロード</a></div>
   <script>
     const upload = document.getElementById("upload");
-    const download1 = document.getElementById("download1");
-    const download2 = document.getElementById("download2");
+    const download = document.getElementById("download");
     upload.addEventListener('change', (e) => {
       const f = e.target.files[0];
       if (f) {
         const r = new FileReader();
         r.onload = (i) => {
           const base64 = i.target.result;
-          const blob1 = new Blob([`const imageList = {
-  // ここの下に貼り付ける。"image_##"は<img src="" id="image_##" />とすることで使用できる。
-  
-  "image_00": "${base64}",  
-};
-
-for (let imageId in imageList) {
-  const imageElement = document.getElementById(imageId);
-  if (!imageElement) {
-    imageElement.src = imageList[imageId];
-  }
-}
-`], {type: 'text/plain'});
-          const blob2 = new Blob([`
+          const blob = new Blob([`
 "image_01": "${base64}",`], {type: 'text/plain'});
-          const url1 = URL.createObjectURL(blob1);
-          const url2 = URL.createObjectURL(blob2);
-          download1.href = url1;
-          download2.href = url2;
+          const url = URL.createObjectURL(blob);
+          download.href = url;
         }
         r.readAsDataURL(f)
       }
