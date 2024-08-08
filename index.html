@@ -18,7 +18,7 @@
         r.onload = (i) => {
           const base64 = i.target.result;
           const blob = new Blob([`
-  "hogehoge": "${base64}",`], {type: 'text/plain'});
+  "base64:hoge": "${base64}",`], {type: 'text/plain'});
           const url = URL.createObjectURL(blob);
           download.href = url;
         }
