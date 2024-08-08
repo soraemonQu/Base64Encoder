@@ -18,7 +18,7 @@
         r.onload = (i) => {
           const base64 = i.target.result;
           const blob = new Blob([`
-"image_01": "${base64}",`], {type: 'text/plain'});
+  "image_01": "${base64}",`], {type: 'text/plain'});
           const url = URL.createObjectURL(blob);
           download.href = url;
         }
