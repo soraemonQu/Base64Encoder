@@ -7,7 +7,7 @@
 </head>
 <body>
   <div style="margin: 10pt; text-align: center;"><input type="file" id="upload"></div>
-  <div style="margin: 10pt; text-align: center;"><a id="download" href="#" download="img.txt">ダウンロード</a></div>
+  <div style="margin: 10pt; text-align: center;"><a id="download" href="#" download="hogehoge.txt">ダウンロード</a></div>
   <script>
     const upload = document.getElementById("upload");
     const download = document.getElementById("download");
@@ -18,7 +18,7 @@
         r.onload = (i) => {
           const base64 = i.target.result;
           const blob = new Blob([`
-  "image_01": "${base64}",`], {type: 'text/plain'});
+  "hogehoge": "${base64}",`], {type: 'text/plain'});
           const url = URL.createObjectURL(blob);
           download.href = url;
         }
